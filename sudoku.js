@@ -1,18 +1,38 @@
-const fs = require('fs');
-const { EOL } = require('os');
+const fs = require("fs");
+const { EOL } = require("os");
 
-const puzzlePath = './puzzles.txt';
+const puzzlePath = "./puzzles.txt";
 function read() {
-  const puzzle = fs.readFileSync(puzzlePath, 'utf-8');
-  return puzzle.split(EOL);
+  const puzzle = fs.readFileSync(puzzlePath, "utf-8");
+  return puzzle.trim().split(EOL);
 }
-console.log(read());
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+// console.log(read());
+
+const text = read()[0];
+/**
+ * Принимает игровое поле в том формате, в котором его вернули из функции read.
+ * Возвращает игровое поле после попытки его решить.
+ */
+
+function random() {
+  return Math.floor(Math.random() * 9) + 1;
 }
+
+function solve(text) {
+  const res = text.match(/.{1,9}/gi).map((el) => el.split(""));
+
+  for (arr of res) {
+    for (let i = 0; i < arr.length; i += 1) {
+      if (arr[i] === "-") {
+        arr[i] = random();
+      }
+    }
+  }
+  return res;
+}
+console.table(solve(text));
+
+// console.log(random())
 
 function isSolved() {
   // Принимает игровое поле в том формате, в котором его вернули из функции solve.
