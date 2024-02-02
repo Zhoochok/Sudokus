@@ -24,7 +24,7 @@ function solve(text) {
   for (arr of res) {
     for (let i = 0; i < arr.length; i += 1) {
       if (arr[i] === "-") {
-        arr[i] = random();
+        arr[i] = random().toString();
       }
     }
   }
@@ -32,12 +32,27 @@ function solve(text) {
 }
 console.table(solve(text));
 
-// console.log(random())
+const sudo = solve(text)
+// console.log(sudo);
 
-function isSolved() {
-  // Принимает игровое поле в том формате, в котором его вернули из функции solve.
+function isSolved(sudo) {
+  for(el of sudo){
+    for(let i = 0; i < el.length; i += 1){
+      if(/[1-9]*/g){
+        return false
+      }
+      
+      }
+    }
+  }
+
+console.log(isSolved(sudo));
+// Принимает игровое поле в том формате, в котором его вернули из функции solve.
   // Возвращает булевое значение — решено это игровое поле или нет.
-}
+
+
+
+
 
 function prettyBoard() {
   // Принимает игровое поле в том формате, в котором его вернули из функции solve.
